@@ -29,6 +29,7 @@ svg {
 hr {
   width: 100%;
   border: 0;
+  margin: 0;
   border-top: 1px solid var(--bg-layout);
 }
 h4 {
@@ -61,7 +62,7 @@ small {
 }
 .btn-light:focus,
 .list:focus {
-  outline: 2px solid var(--state-focused);
+  outline: var(--state-focused);
 }
 .navbar .search-box:hover {
   border: var(--search-hover);
@@ -93,7 +94,7 @@ small {
   --state-light-default: #ffffff;
   --state-hover: #f7f7f7;
   --state-pressed: #f0f0f0;
-  --state-focused: #005bd3;
+  --state-focused: 2px solid #005bd3;
 
   --bg-white: #ffffff;
   --bg-layout: #f1f1f1;
@@ -107,6 +108,7 @@ small {
   --card-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.05);
 }
 
+/* Main styles */
 .app-shopify {
   width: 100%;
   height: 100vh;
@@ -143,6 +145,7 @@ small {
   outline: none;
   border: 0;
   font-size: 12px;
+  color: white;
 }
 .navbar .search-box input::placeholder {
   color: lightgray;
@@ -150,11 +153,12 @@ small {
 
 .setup {
   position: relative;
+}
+.setup button {
   border-radius: 8px;
   height: 35px;
-  transition: 0.3s ease;
+  border: 2px solid transparent;
   background-color: var(--shade-200);
-  z-index: 1;
 
   &:hover {
     background-color: var(--shade-100);
@@ -163,7 +167,7 @@ small {
     background-color: var(--shade-50);
   }
   &:focus {
-    outline: 2px solid var(--state-focused);
+    outline: var(--state-focused)
   }
 }
 .setup .notification-bell {
@@ -189,15 +193,14 @@ small {
 
 .setup .dropdown {
   position: absolute;
-  right: 10px;
+  right: 0px;
   z-index: 2;
   top: 64px;
-  background-color: var(--bg-white);
   height: 384px;
   width: 320px;
   border-radius: 14px;
+  background-color: var(--bg-white);
   box-shadow: var(--card-shadow);
-  /* padding: 6px ; */
 }
 
 .setup .dropdown-content header {
@@ -206,7 +209,7 @@ small {
   padding: 4px 12px 4px 8px;
   background-color: var(--state-hover);
   height: 36px;
-  margin: 6px;
+  margin: 6px 6px 0 6px;
 }
 .setup .dropdown-content .merchant {
   gap: 8px;
@@ -221,6 +224,8 @@ small {
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+  margin: 3px 0;
+  height: 86%;
 }
 .setup .dropdown-content .user {
   height: 50px;
@@ -242,14 +247,15 @@ small {
   border-radius: 8px;
   margin: 0 auto;
   gap: 8px;
+  transition: var(--transition);
 
   font-weight: 400;
-  font-size: 14px;
+  font-size: 13px;
   color: var(--font-dark-color);
 }
 .setup .dropdown-content .user,
 .setup .dropdown-content .list {
-  padding: 0 6px;
+  padding: 6px;
 }
 
 .container {
