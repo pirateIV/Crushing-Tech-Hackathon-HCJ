@@ -52,6 +52,7 @@ small {
 .card {
   background-color: var(--bg-white);
   box-shadow: var(--card-shadow);
+  border-radius: 14px;
 }
 .logo-mobile {
   display: none;
@@ -201,39 +202,15 @@ small {
 }
 
 .setup .dropdown,
-.alert-dropdown {
+.setup .alert-dropdown {
   position: absolute;
   right: 0px;
   z-index: 2;
   top: 64px;
   height: 384px;
   width: 320px;
-  border-radius: 14px;
 }
-.setup .alert-dropdown {
-  width: 383px;
-  height: 118px;
-  padding: 16px;
-  justify-content: space-between;
-  flex-direction: column;
-}
-.setup .alert-dropdown header {
-  justify-content: space-between;
-  width: 100%;
-}
-.setup .alert-dropdown p {
-  font-weight: 600;
-  color: var(--font-mid-color) !important;
-}
-.setup .alert-dropdown .icons {
-  gap: 16px;
-}
-.setup .alert-dropdown .content {
-  height: 50px;
-  justify-content: center;
-  width: 351px;
-  background-color: var(--bg-layout);
-}
+
 .setup .dropdown-content header {
   justify-content: space-between;
   border-radius: 8px;
@@ -268,6 +245,30 @@ small {
   margin: 0 auto;
   gap: 5px;
 }
+.setup .alert-dropdown {
+  width: 383px;
+  height: 118px;
+  padding: 16px;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.setup .alert-dropdown header {
+  justify-content: space-between;
+  width: 100%;
+}
+.setup .alert-dropdown p {
+  font-weight: 600;
+  color: var(--font-mid-color) !important;
+}
+.setup .alert-dropdown .icons {
+  gap: 16px;
+}
+.setup .alert-dropdown .content {
+  height: 50px;
+  justify-content: center;
+  width: 351px;
+  background-color: var(--bg-layout);
+}
 .user h4 {
   font-weight: 500;
   font-size: 13px;
@@ -291,6 +292,7 @@ small {
 
 .container {
   margin: 30px auto 0;
+  height: 70vh;
   position: relative;
   max-width: var(--container-width);
 }
@@ -299,10 +301,10 @@ small {
   width: 100%;
   height: 56px;
   position: fixed;
-  top: 0;
   border-radius: 8px;
   padding: 12px 8px 12px 16px;
   background-color: var(--shade-300);
+  top: 90px;
 }
 .container .plan-content {
   justify-content: space-between;
@@ -337,7 +339,8 @@ small {
 
 .container .setup-guide {
   width: 100%;
-  margin-top: 200px;
+  padding: 16px;
+  transform: translatey(90px);
 }
 
 @media screen and (max-width: 390px) {
