@@ -3,6 +3,7 @@
 *::after {
   box-sizing: border-box;
   text-decoration: none;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
@@ -44,6 +45,10 @@ small {
 .d-flex {
   display: flex;
   align-items: center;
+}
+.card {
+  background-color: var(--bg-white);
+  box-shadow: var(--card-shadow);
 }
 .logo-mobile {
   display: none;
@@ -168,7 +173,7 @@ small {
     background-color: var(--shade-50);
   }
   &:focus {
-    outline: var(--state-focused)
+    outline: var(--state-focused);
   }
 }
 .setup .notification-bell {
@@ -192,7 +197,8 @@ small {
   background-color: var(--bg-badge);
 }
 
-.setup .dropdown {
+.setup .dropdown,
+.alert-dropdown {
   position: absolute;
   right: 0px;
   z-index: 2;
@@ -200,10 +206,20 @@ small {
   height: 384px;
   width: 320px;
   border-radius: 14px;
-  background-color: var(--bg-white);
-  box-shadow: var(--card-shadow);
 }
-
+.setup .alert-dropdown {
+  width: 383px;
+  height: 118px;
+  padding: 16px;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.setup .alert-dropdown .content {
+  height: 50px;
+  justify-content: center;
+  width: 351px;
+  background-color: var(--bg-layout);
+}
 .setup .dropdown-content header {
   justify-content: space-between;
   border-radius: 8px;
@@ -331,10 +347,16 @@ small {
     left: 10px;
   }
 
-  .setup {
-    background-color: transparent;
+  .setup .alert-dropdown {
+    width: 358px;
+    height: 136px;
   }
-  .setup .notification-bell {
+  .setup button {
+    background-color: transparent;
+    padding: 0;
+  }
+  .setup .notification-bell,
+  .setup .user-info {
     padding: 0;
   }
 }

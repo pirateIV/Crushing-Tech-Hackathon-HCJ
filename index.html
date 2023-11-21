@@ -31,7 +31,7 @@
           <input type="search" name="search" placeholder="Search" id="searchInput" aria-label="search">
         </form>
         <section class="setup d-flex">
-          <button class="notification-bell d-flex">
+          <button class="notification-bell d-flex" id="showAlertBtn">
             <span>
               <svg width="25" height="23" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -39,6 +39,36 @@
                   fill="#e3e3e3" />
               </svg>
             </span>
+
+            <div class="alert-dropdown d-flex card">
+              <header>
+                <h4>Alerts</h4>
+                <section class="icons d-">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M3 6C3 5.58579 3.33579 5.25 3.75 5.25H16.25C16.6642 5.25 17 5.58579 17 6C17 6.41421 16.6642 6.75 16.25 6.75H3.75C3.33579 6.75 3 6.41421 3 6Z"
+                      fill="#616161" />
+                    <path
+                      d="M6.75 14C6.75 13.5858 7.08579 13.25 7.5 13.25H12.5C12.9142 13.25 13.25 13.5858 13.25 14C13.25 14.4142 12.9142 14.75 12.5 14.75H7.5C7.08579 14.75 6.75 14.4142 6.75 14Z"
+                      fill="#616161" />
+                    <path
+                      d="M5.5 9.25C5.08579 9.25 4.75 9.58579 4.75 10C4.75 10.4142 5.08579 10.75 5.5 10.75H14.5C14.9142 10.75 15.25 10.4142 15.25 10C15.25 9.58579 14.9142 9.25 14.5 9.25H5.5Z"
+                      fill="#616161" />
+                  </svg>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M13.2803 9.03033C13.5732 8.73744 13.5732 8.26256 13.2803 7.96967C12.9874 7.67678 12.5126 7.67678 12.2197 7.96967L9.25 10.9393L8.03033 9.71967C7.73744 9.42678 7.26256 9.42678 6.96967 9.71967C6.67678 10.0126 6.67678 10.4874 6.96967 10.7803L8.71967 12.5303C9.01256 12.8232 9.48744 12.8232 9.78033 12.5303L13.2803 9.03033Z"
+                      fill="#616161" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10ZM15.5 10C15.5 13.0376 13.0376 15.5 10 15.5C6.96243 15.5 4.5 13.0376 4.5 10C4.5 6.96243 6.96243 4.5 10 4.5C13.0376 4.5 15.5 6.96243 15.5 10Z"
+                      fill="#616161" />
+                  </svg>
+                </section>
+              </header>
+              <div class="content d-flex">
+                <p>Alerts about your store and account will show here</p>
+              </div>
+            </div>
           </button>
           <button class="d-flex" id="showDropdownBtn">
             <div class="user-info d-flex" id="user-select">
@@ -47,7 +77,7 @@
             </div>
           </button>
 
-          <div class="dropdown" id="dropdown" hidden>
+          <div class="dropdown card" id="dropdown" hidden>
             <div class="dropdown-content">
               <header class="d-flex">
                 <div class="merchant d-flex">
