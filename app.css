@@ -35,6 +35,9 @@ hr {
 }
 h4 {
   margin: 0;
+  font-size: 14px;
+  font-weight: var(--fw-600);
+  color: var(--font-dark-color);
 }
 small {
   color: var(--font-mid-color);
@@ -214,6 +217,17 @@ small {
   justify-content: space-between;
   flex-direction: column;
 }
+.setup .alert-dropdown header {
+  justify-content: space-between;
+  width: 100%;
+}
+.setup .alert-dropdown p {
+  font-weight: 600;
+  color: var(--font-mid-color) !important;
+}
+.setup .alert-dropdown .icons {
+  gap: 16px;
+}
 .setup .alert-dropdown .content {
   height: 50px;
   justify-content: center;
@@ -277,6 +291,7 @@ small {
 
 .container {
   margin: 30px auto 0;
+  position: relative;
   max-width: var(--container-width);
 }
 .container .plan {
@@ -284,6 +299,7 @@ small {
   width: 100%;
   height: 56px;
   position: fixed;
+  top: 0;
   border-radius: 8px;
   padding: 12px 8px 12px 16px;
   background-color: var(--shade-300);
@@ -291,7 +307,8 @@ small {
 .container .plan-content {
   justify-content: space-between;
 }
-.container .plan p {
+.container .plan p,
+ .alert-dropdown p {
   font-size: 13px;
   margin: 0;
   color: var(--font-light-color);
@@ -316,6 +333,11 @@ small {
     box-shadow: inset 1px 3px 0 rgba(228, 228, 228, 1),
       0 1px 2px 0 rgba(228, 228, 228, 0.8);
   }
+}
+
+.container .setup-guide {
+  width: 100%;
+  margin-top: 200px;
 }
 
 @media screen and (max-width: 390px) {
@@ -351,6 +373,11 @@ small {
     width: 358px;
     height: 136px;
   }
+  .setup .alert-dropdown .content {
+    width: 326px;
+    height: 68px;
+  }
+
   .setup button {
     background-color: transparent;
     padding: 0;
