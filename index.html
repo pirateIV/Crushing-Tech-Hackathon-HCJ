@@ -31,7 +31,7 @@
           <input type="search" name="search" placeholder="Search" id="searchInput" aria-label="search">
         </form>
         <section class="setup d-flex">
-          <button class="d-flex">
+          <button class="d-flex" id="showDropdownBtn">
             <span class="notification-bell d-flex">
               <svg width="25" height="23" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -39,13 +39,13 @@
                   fill="#e3e3e3" />
               </svg>
             </span>
-            <div class="user-info d-flex">
+            <div class="user-info d-flex" id="user-select">
               <p class="username">Davii Collections</p>
               <span class="user-badge">DC</span>
             </div>
           </button>
 
-          <div class="dropdown">
+          <div class="dropdown" id="dropdown" hidden>
             <div class="dropdown-content">
               <header class="d-flex">
                 <div class="merchant d-flex">
