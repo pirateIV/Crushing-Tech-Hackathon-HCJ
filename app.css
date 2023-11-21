@@ -153,6 +153,7 @@ small {
 
 .setup {
   position: relative;
+  gap: 8px;
 }
 .setup button {
   border-radius: 8px;
