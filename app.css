@@ -23,9 +23,20 @@ a {
   text-decoration: none;
   color: var(--font-pure-dark);
 }
-
 svg {
   cursor: pointer;
+}
+hr {
+  width: 100%;
+  border: 0;
+  border-top: 1px solid var(--bg-layout);
+}
+h4 {
+  margin: 0;
+}
+small {
+  color: var(--font-mid-color);
+  font-size: 12px;
 }
 
 /* Classes and States */
@@ -40,13 +51,16 @@ svg {
   transition: var(--transition);
   background-color: var(--state-light-default);
 }
-.btn-light:hover {
+.btn-light:hover,
+.list:hover {
   background-color: var(--state-hover);
 }
-.btn-light:active {
+.btn-light:active,
+.list:active {
   background-color: var(--state-pressed);
 }
-.btn-light:focus {
+.btn-light:focus,
+.list:focus {
   outline: 2px solid var(--state-focused);
 }
 .navbar .search-box:hover {
@@ -70,6 +84,7 @@ svg {
   --font-pure-dark: #000000;
 
   --font-500: 500;
+  --fw-600: 600;
 
   --stroke-S50: #ebebeb;
   --stroke-S100: #e1e1e1/7%;
@@ -89,6 +104,7 @@ svg {
   --search-default: 1px solid #d4d4d466;
   --search-hover: 1px solid #e1e1e1;
   --search-focused: 2px solid #e1e1e1;
+  --card-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.05);
 }
 
 .app-shopify {
@@ -133,18 +149,21 @@ svg {
 }
 
 .setup {
+  position: relative;
   border-radius: 8px;
   height: 35px;
-  overflow: hidden;
-  cursor: pointer;
   transition: 0.3s ease;
   background-color: var(--shade-200);
+  z-index: 1;
 
   &:hover {
     background-color: var(--shade-100);
   }
   &:active {
     background-color: var(--shade-50);
+  }
+  &:focus {
+    outline: 2px solid var(--state-focused);
   }
 }
 .setup .notification-bell {
@@ -155,16 +174,82 @@ svg {
   padding: 10px 4px 10px 10px;
 }
 .setup .user-info .username,
-.setup .user-info .user-badge {
+.user-badge {
   font-size: 12px;
   font-weight: var(--font-500);
   color: var(--font-light-color);
 }
-.setup .user-info .user-badge {
+.user-badge {
   padding: 5px;
+  cursor: pointer;
   border-radius: 5px;
   color: rgba(0, 0, 0, 0.4);
   background-color: var(--bg-badge);
+}
+
+.setup .dropdown {
+  position: absolute;
+  right: 10px;
+  z-index: 2;
+  top: 64px;
+  background-color: var(--bg-white);
+  height: 384px;
+  width: 320px;
+  border-radius: 14px;
+  box-shadow: var(--card-shadow);
+  /* padding: 6px ; */
+}
+
+.setup .dropdown-content header {
+  justify-content: space-between;
+  border-radius: 8px;
+  padding: 4px 12px 4px 8px;
+  background-color: var(--state-hover);
+  height: 36px;
+  margin: 6px;
+}
+.setup .dropdown-content .merchant {
+  gap: 8px;
+}
+.setup .dropdown-content h4 {
+  font-weight: var(--fw-600);
+  font-size: 13px;
+}
+.setup .dropdown ul {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.setup .dropdown-content .user {
+  height: 50px;
+  width: 308px;
+  flex-direction: column;
+  padding-bottom: 0;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 0 auto;
+  gap: 5px;
+}
+.user h4 {
+  font-weight: 500;
+  font-size: 13px;
+}
+.setup .dropdown-content .list {
+  width: 308px;
+  height: 30px;
+  border-radius: 8px;
+  margin: 0 auto;
+  gap: 8px;
+
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--font-dark-color);
+}
+.setup .dropdown-content .user,
+.setup .dropdown-content .list {
+  padding: 0 6px;
 }
 
 .container {
@@ -182,7 +267,6 @@ svg {
 }
 .container .plan-content {
   justify-content: space-between;
-
 }
 .container .plan p {
   font-size: 13px;
@@ -206,12 +290,14 @@ svg {
   cursor: pointer;
 
   &:active {
-    box-shadow: inset 1px 3px 0 rgba(228, 228, 228, 1), 0 1px 2px 0 rgba(228, 228, 228, 0.8);
+    box-shadow: inset 1px 3px 0 rgba(228, 228, 228, 1),
+      0 1px 2px 0 rgba(228, 228, 228, 0.8);
   }
 }
 
 @media screen and (max-width: 390px) {
-  .logo-desktop, .username {
+  .logo-desktop,
+  .username {
     display: none;
   }
   .logo-mobile {
@@ -229,7 +315,7 @@ svg {
   }
   .container .plan-content-right {
     height: auto;
-    flex-direction:column;
+    flex-direction: column;
     align-items: center;
   }
   .container .plan-content-right .select-btn {
