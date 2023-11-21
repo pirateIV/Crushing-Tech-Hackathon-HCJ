@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Icon Cycling Example</title>
+  <style>
+    #iconContainer {
+      font-size: 2em;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="iconContainer">&#128512;</div>
+
+  <script>
+    const iconContainer = document.getElementById('iconContainer');
+    const icons = ['&#128512;', '&#128513;', '&#128514;', '&#128515;']; // Add more icons as needed
+    const delay = 300; // Delay in milliseconds
+    let currentIndex = 0;
+
+    iconContainer.addEventListener('click', (e) => {
+      if (currentIndex === 0) {
+        const iconsInterval = setInterval(() => {
+          iconContainer.innerHTML = icons[currentIndex]
+          currentIndex++
+
+          if (currentIndex >= icons.length) {
+            clearInterval(iconsInterval) // stop the interval when reaching the last icon
+            currentIndex = icons.length - 1 // set the currentIndex to the last one
+          }
+
+        }, delay)
+      } else {
+        currentIndex = 0;
+        iconContainer.innerHTML = icons[currentIndex]
+      }
+
+    })
+  </script>
+
+</body>
+
+</html>

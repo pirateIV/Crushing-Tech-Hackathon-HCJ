@@ -16,19 +16,19 @@
   <main class="app-shopify">
     <div class="dashboard">
       <nav class="navbar d-flex">
-        <picture>
+        <a href="https://shopify.com" target="_blank">
           <img src="https://crushingit.tech/hackathon-assets/shopify-icon-desktop.svg" width="80" class="shopify-logo"
             alt="shopify-logo">
-        </picture>
+        </a>
         <form class="search-box d-flex">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 13 14" fill="none">
             <path fill-rule="evenodd" clip-rule="evenodd"
               d="M8.82264 10.3833C7.89957 11.0841 6.74835 11.5 5.5 11.5C2.46243 11.5 0 9.03757 0 6C0 2.96243 2.46243 0.5 5.5 0.5C8.53757 0.5 11 2.96243 11 6C11 7.24835 10.5841 8.39957 9.8833 9.32264L12.7803 12.2197C13.0732 12.5126 13.0732 12.9874 12.7803 13.2803C12.4874 13.5732 12.0126 13.5732 11.7197 13.2803L8.82264 10.3833ZM9.5 6C9.5 8.20914 7.70914 10 5.5 10C3.29086 10 1.5 8.20914 1.5 6C1.5 3.79086 3.29086 2 5.5 2C7.70914 2 9.5 3.79086 9.5 6Z"
               fill="#e3e3e3" />
           </svg>
-          <input type="search" name="search" placeholder="Search" id="searchInput">
+          <input type="search" name="search" placeholder="Search" id="searchInput" aria-label="search">
         </form>
-        <section class="settings d-flex">
+        <section class="setup d-flex">
           <span class="notification-bell bg-gray d-flex">
             <svg width="25" height="23" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd"
@@ -47,7 +47,7 @@
         <div class="plan d-flex">
           <p>Extend your trial for $1/month for 3 months on select plans.</p>
           <div class="plan-content-right d-flex">
-            <button class="select-btn">Select a plan</button>
+            <a href="" class="select-btn btn-light" aria-label="select a plan">Select a plan</a>
             <span class="cancel-btn">
               <svg width="20.5" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
