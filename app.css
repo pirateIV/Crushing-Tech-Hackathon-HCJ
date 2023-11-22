@@ -54,8 +54,20 @@ small {
   box-shadow: var(--card-shadow);
   border-radius: 14px;
 }
+.hide {
+  display: none;
+}
+.flex {
+  display: flex;
+}
+.block {
+  display: block;
+}
 .logo-mobile {
   display: none;
+}
+.m-0 {
+  margin: 0;
 }
 .btn-light {
   transition: var(--transition);
@@ -228,7 +240,6 @@ small {
 }
 .setup .dropdown ul {
   padding: 0;
-  display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
@@ -337,12 +348,32 @@ small {
   }
 }
 
-.container .setup-guide {
+ .setup-guide {
   width: 100%;
   padding: 16px;
-  transform: translatey(90px);
+  /* transform: translatey(90px); */
 }
-
+/* .setup {} */
+.setup-guide .top, .setup-guide .menu-top {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.setup-guide .top {
+  gap: 16px;
+}
+.setup-guide .menu-top {
+  gap: 8px;
+}
+.setup-guide .menu-top p {
+  font-size: 13px;
+}
+.setup-guide header {
+  justify-content: space-between;
+  width: 100%;
+}
+.setup-guide .progress p {
+  font-size: 12px;
+}
 @media screen and (max-width: 390px) {
   .logo-desktop,
   .username {

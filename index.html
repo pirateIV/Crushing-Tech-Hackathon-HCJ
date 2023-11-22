@@ -40,7 +40,7 @@
               </svg>
             </span>
 
-            <div class="alert-dropdown d-flex card" id="alertDropdown" hidden>
+            <div class="alert-dropdown card hide" id="alertDropdown" >
               <header class="d-flex">
                 <h4>Alerts</h4>
                 <section class="icons d-flex">
@@ -77,7 +77,7 @@
             </div>
           </button>
 
-          <div class="dropdown card" id="dropdown" hidden>
+          <div class="dropdown card hide" id="dropdown">
             <div class="dropdown-content">
               <header class="d-flex">
                 <div class="merchant d-flex">
@@ -89,7 +89,7 @@
                     stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
               </header>
-              <ul>
+              <ul class="d-flex">
                 <a href="https://admin.shopify.com" class="list d-flex">
                   <img src="https://crushingit.tech/hackathon-assets/icon-store.svg" alt="store-img">
                   All stores
@@ -131,10 +131,21 @@
         </div>
 
         <div class="setup-guide card">
-          <header>
-            <h4>Setup guide</h4>
-            <p>Use this personalized guide to get your store up and running</p>
-          </header>
+          <div>
+            <section class="top d-flex">
+              <header class="d-flex">
+                <div class="menu-top d-flex">
+                 <h4>Setup guide</h4>
+                 <p class="m-0">Use this personalized guide to get your store up and running</p>
+                </div>
+                <img src="https://crushingit.tech/hackathon-assets/icon-arrow-down.svg" alt="">
+               </header>
+               <div class="progress">
+                <p class="m-0"><span class="completed">1</span> / <span class="maxNum">5</span> completed</p>
+                <div class="progress-bar"></div>
+               </div>
+            </section>
+          </div>
         </div>
       </section>
     </div>
