@@ -1,34 +1,77 @@
-// Your javascript goes here
-const userSelect = document.querySelector('#user-select');
-const dropdown = document.querySelector('#dropdown');
-const showAlert = document.querySelector('#showAlertBtn');
-const alertDropdown = document.querySelector('#alertDropdown');
+(function App() {
+  const toggleMenuBtn = document.getElementById('profile-menu');
+  const expandCollapseAccordion = document.getElementById('toggleSetup');
+  const accordion = document.getElementById('accordion');
+  const profileMenu = document.getElementById('dropdown-menu');
 
-let delayDuration = 100;
 
-const showDropdown = () => {
-  setTimeout(() => {
-    if (alertDropdown.classList.contains('flex')) {
-      alertDropdown.classList.toggle(
-        alertDropdown.classList.contains('flex') ? 'flex' : 'hide'
-      );
+  const menuItems = profileMenu.querySelectorAll('[role="menuitem"]');
+
+  // let currentIndex = 0;
+
+  function openProfileMenu() {
+    toggleMenuBtn.ariaExpanded = 'true';
+    menuItems.item(0).focus();
+  }
+
+  function closeProfileMenu() {
+    toggleMenuBtn.ariaExpanded = 'false';
+  }
+
+  function handleMenuItemsFocus(e) {
+    currentIndex = Array.from(menuItems).indexOf(e.target);
+    menuItems.item(currentIndex).focus();
+  }
+
+  // let firstItem = menuItemsIndex === 0
+  // let nextItem = menuItems[menuItemIndex + 1]
+
+  function handleKeyEvents(e) {
+    if (e.key === 'Escape') {
+      toggleMenu();
     }
-    dropdown.classList.toggle(
-      dropdown.classList.contains('hide') ? 'block' : 'hide'
-    );
-  }, delayDuration);
-};
-const showAlertDropdown = () => {
-  setTimeout(() => {
-    if (dropdown.classList.contains('block')) {
-      dropdown.classList.toggle(
-        dropdown.classList.contains('block') ? 'block' : 'hide'
-      );
+
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
     }
-    alertDropdown.classList.toggle(
-      alertDropdown.classList.contains('hide') ? 'flex' : 'hide'
-    );
-  }, delayDuration);
-};
-userSelect.addEventListener('click', showDropdown);
-showAlert.addEventListener('click', showAlertDropdown);
+  }
+
+  function toggleMenu() {
+    profileMenu.hidden = !profileMenu.hidden;
+    const modalExpanded =
+      toggleMenuBtn.attributes['aria-expanded'].value === true;
+
+    profileMenu.addEventListener('keyup', function (e) {
+      handleKeyEvents(e);
+      // handleMenuItemsFocus(e)
+    });
+    menuItems.forEach(item => {
+      item.addEventListener('focus', handleMenuItemsFocus);
+    });
+
+    modalExpanded ? closeProfileMenu : openProfileMenu();
+  }
+
+  function handleSetupKeyPress(e) {
+    if (e.key === 'Enter') {
+      toggleSetup();
+    }
+  }
+
+  function toggleSetup() {
+    let isVisible = getComputedStyle(accordion).display;
+
+    if (isVisible === 'flex') {
+      accordion.style.display = 'none';
+      expandCollapseAccordion.ariaExpanded = false
+    } else {
+      accordion.style.display = 'flex';
+      expandCollapseAccordion.ariaExpanded = true
+    }
+  }
+
+  expandCollapseAccordion.addEventListener('keypress', e => {
+    handleSetupKeyPress(e)
+  });
+  expandCollapseAccordion.addEventListener('click', toggleSetup);
+  toggleMenuBtn.addEventListener('click', toggleMenu);
+})();

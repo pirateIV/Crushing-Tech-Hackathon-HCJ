@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accordion Example</title>
+  <style>
+    .accordion {
+      list-style: none;
+      padding: 0;
+      width: 300px;
+    }
+
+    .accordion-item {
+      margin-bottom: 8px;
+    }
+
+    .accordion-button {
+      cursor: pointer;
+      padding: 8px;
+      width: 100%;
+      text-align: left;
+      background-color: #f1f1f1;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .accordion-content {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-top: 0;
+      border-radius: 0 0 4px 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <ul class="accordion">
+    <li class="accordion-item">
+      <button class="accordion-button" aria-controls="section1" aria-expanded="true" onclick="toggleSection('section1')">Section 1</button>
+      <div id="section1" class="accordion-content">Content for Section 1</div>
+    </li>
+
+    <li class="accordion-item">
+      <button class="accordion-button" aria-controls="section2" aria-expanded="false" onclick="toggleSection('section2')">Section 2</button>
+      <div id="section2" class="accordion-content" hidden>Content for Section 2</div>
+    </li>
+
+    <li class="accordion-item">
+      <button class="accordion-button" aria-controls="section3" aria-expanded="false" onclick="toggleSection('section3')">Section 3</button>
+      <div id="section3" class="accordion-content" hidden>Content for Section 3</div>
+    </li>
+  </ul>
+
+  <script>
+    function toggleSection(sectionId) {
+      var section = document.getElementById(sectionId);
+      var button = document.querySelector('[aria-controls="' + sectionId + '"]');
+
+      // If the clicked section is already open, close it
+      if (section.hidden) {
+        // Close all sections
+        document.querySelectorAll('.accordion-content').forEach(function(content) {
+          content.hidden = true;
+        });
+
+        // Open the clicked section
+        section.hidden = false;
+        button.setAttribute('aria-expanded', 'true');
+      } else {
+        // Close the clicked section
+        section.hidden = true;
+        button.setAttribute('aria-expanded', 'false');
+      }
+    }
+  </script>
+</body>
+</html>
