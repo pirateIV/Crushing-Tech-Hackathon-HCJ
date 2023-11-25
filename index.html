@@ -35,7 +35,7 @@
           <input type="search" name="search" placeholder="Search" id="searchInput" aria-label="search">
         </form>
         <section class="setup d-flex">
-          <button class="notification-bell d-flex" aria-expanded="false" aria-haspopup="tree"
+          <button class="notification-bell d-flex" aria-expanded="false" aria-haspopup="true"
             aria-controls="alertDropdown" id="showAlertBtn">
             <span>
               <svg width="20" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,10 +45,10 @@
               </svg>
             </span>
           </button>
-          <button class="user-info d-flex" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown"
+          <button class="user-info d-flex" aria-expanded="false" aria-haspopup="true" aria-controls="dropdown"
             id="profile-menu">
             <p class="username">Davii Collections</p>
-            <span class="user-badge d-flex" tabindex="0">DC</span>
+            <span class="user-badge d-flex" tabindex="0">DC</span>  
           </button>
 
           <div class="alert-dropdown card" aria-controls="showAlertBtn" id="alertDropdown" hidden>
@@ -93,16 +93,16 @@
                 </svg>
               </header>
               <ul class="profile-menu d-flex">
-                <a href="https://admin.shopify.com" class="menu-item d-flex" role="menuitem">
+                <a tabindex="0" href="https://admin.shopify.com" class="menu-item d-flex" role="menuitem">
                   <img src="https://crushingit.tech/hackathon-assets/icon-store.svg" alt="store-img">
                   All stores
                 </a>
                 <hr>
-                <a href="https://admin.shopify.com" class="menu-item" role="menuitem">Help Center</a>
-                <a href="https://admin.shopify.com" class="menu-item" role="menuitem">Changelog</a>
-                <a href="https://admin.shopify.com" class="menu-item" role="menuitem">Community forums</a>
-                <a href="https://admin.shopify.com" class="menu-item" role="menuitem">Hire a Shopify partner</a>
-                <a href="https://admin.shopify.com" class="menu-item" role="menuitem">Keyboard shortcuts</a>
+                <a tabindex="0" href="https://admin.shopify.com" class="menu-item" role="menuitem">Help Center</a>
+                <a tabindex="0" href="https://admin.shopify.com" class="menu-item" role="menuitem">Changelog</a>
+                <a tabindex="0" href="https://admin.shopify.com" class="menu-item" role="menuitem">Community forums</a>
+                <a tabindex="0" href="https://admin.shopify.com" class="menu-item" role="menuitem">Hire a Shopify partner</a>
+                <a tabindex="0" href="https://admin.shopify.com" class="menu-item" role="menuitem">Keyboard shortcuts</a>
                 <hr>
                 <div class="user d-flex">
                   <h4>David Micheal</h4>
@@ -140,13 +140,14 @@
             <header>
               <div class="menu-top d-flex">
                 <h4>Setup guide</h4>
-                <img src="https://crushingit.tech/hackathon-assets/icon-arrow-down.svg" aria-expanded="true"
-                  aria-controls="accordion" tabindex="0" class="toggle-setup" id="toggleSetup" alt="toggle-icon">
+                <span class="toggle-setup" aria-expanded="true" aria-controls="accordion" tabindex="0" id="toggleSetup">
+                  <img src="https://crushingit.tech/hackathon-assets/icon-arrow-down.svg" alt="toggle-icon">
+                </span>
               </div>
               <p class="m-0">Use this personalized guide to get your store up and running</p>
             </header>
             <div class="progress d-flex">
-              <p class="m-0"><span class="completed-step">1</span> / <span class="total-steps">5</span> completed</p>
+              <p class="m-0"><span class="completed-step">0</span> / <span class="total-steps">5</span> completed</p>
               <div class="progress-container">
                 <div class="progress-bar" role="progressbar"></div>
               </div>
@@ -154,12 +155,9 @@
           </section>
 
           <div class="accordion" id="accordion" aria-labelledby="toggleSetup">
-            <div tabindex="0" class="accordion-item">
+            <div aria-expanded="true" class="accordion-item open">
               <div class="accordion-header d-flex">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" fill="none">
-                  <circle cx="16" cy="16" r="12" stroke="#8A8A8A" stroke-width="2.5" stroke-linecap="round"
-                    stroke-linejoin="round" stroke-dasharray="4 6" />
-                </svg>
+               <button class="step-check" checked="false" role="checkbox"></button>
                 <span role="heading">Customize your oneline store</span>
               </div>
               <div class="content">
@@ -172,72 +170,66 @@
               </div>
             </div>
 
-            <div tabindex="0" class="accordion-item open">
+            <div aria-expanded="false" class="accordion-item">
               <div class="accordion-header d-flex">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" fill="none">
-                  <circle cx="16" cy="16" r="12" stroke="#8A8A8A" stroke-width="2.5" stroke-linecap="round"
-                    stroke-linejoin="round" stroke-dasharray="4 6" />
-                </svg>
+               <button class="step-check" checked="false" role="checkbox"></button>
                 <span role="heading">Add your first product</span>
               </div>
               <div class="content">
-                <p>Choose a theme and add your logo, colors, and images to reflect your brand. <a href=""> Learn
+                <p>Write a description, add photos, and set pricing for the products you plan to sell. <a href=""> Learn
                     more</a></p>
-                <button>Customize theme</button>
+                <div class="btns">
+                  <button>Import product</button>
+                  <button>Add product</button>
+
+                </div>
               </div>
               <div class="accordion-illustration">
                 <img src="https://crushingit.tech/hackathon-assets/product.png" alt="product">
               </div>
             </div>
 
-            <div tabindex="0" class="accordion-item ">
+            <div aria-expanded="false" class="accordion-item">
               <div class="accordion-header d-flex">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" fill="none">
-                  <circle cx="16" cy="16" r="12" stroke="#8A8A8A" stroke-width="2.5" stroke-linecap="round"
-                    stroke-linejoin="round" stroke-dasharray="4 6" />
-                </svg>
+               <button class="step-check" checked="false" role="checkbox"></button>
                 <span role="heading">Add a custom domain</span>
               </div>
               <div class="content">
-                <p>Choose a theme and add your logo, colors, and images to reflect your brand. <a href=""> Learn
+                <p>Your current domain is 222219.myshopify.com but you can add a custom domain to help customers find your online store. <a href=""> Learn
                     more</a></p>
-                <button>Customize theme</button>
+                <button>Add domain</button>
               </div>
               <div class="accordion-illustration">
                 <img src="https://crushingit.tech/hackathon-assets/website.png" alt="customize-store">
               </div>
             </div>
 
-            <div tabindex="0" class="accordion-item ">
+            <div aria-expanded="false" class="accordion-item">
               <div class="accordion-header d-flex">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" fill="none">
-                  <circle cx="16" cy="16" r="12" stroke="#8A8A8A" stroke-width="2.5" stroke-linecap="round"
-                    stroke-linejoin="round" stroke-dasharray="4 6" />
-                </svg>
+               <button class="step-check" checked="false" role="checkbox"></button>
                 <span role="heading">Name your store</span>
               </div>
               <div class="content">
-                <p>Choose a theme and add your logo, colors, and images to reflect your brand. <a href=""> Learn
+                <p>Your temporary store name is currently Davii collections. The store name appears in your admin and
+                  your online store. <a href=""> Learn
                     more</a></p>
-                <button>Customize theme</button>
+                <button>Name store </button>
               </div>
               <div class="accordion-illustration">
                 <img src="https://crushingit.tech/hackathon-assets/name-store.png" alt="store">
               </div>
             </div>
 
-            <div tabindex="0" class="accordion-item ">
+            <div aria-expanded="false" class="accordion-item ">
               <div class="accordion-header d-flex">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" fill="none">
-                  <circle cx="16" cy="16" r="12" stroke="#8A8A8A" stroke-width="2.5" stroke-linecap="round"
-                    stroke-linejoin="round" stroke-dasharray="4 6" />
-                </svg>
+               <button class="step-check" checked="false" role="checkbox"></button>
                 <span role="heading">Set up a payment provider</span>
               </div>
               <div class="content">
-                <p>Choose a theme and add your logo, colors, and images to reflect your brand. <a href=""> Learn
+                <p>Choose a payment provider to start accepting payments. You’ll need to create an account with the
+                  payment provider and set it up with your Shopify store. <a href=""> Learn
                     more</a></p>
-                <button>Customize theme</button>
+                <button>Set up payment</button>
               </div>
               <div class="accordion-illustration">
                 <img src="https://crushingit.tech/hackathon-assets/payment.png" alt="customize-store">
