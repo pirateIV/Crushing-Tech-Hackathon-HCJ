@@ -222,7 +222,7 @@
   }
 
   handleCheckboxes();
-
+  handleProfileMenuItem()
   function toggleSetup() {
     let isVisible = getComputedStyle(accordion).display;
 
