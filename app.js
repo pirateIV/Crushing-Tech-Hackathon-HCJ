@@ -215,7 +215,7 @@
           currentMenuFocused = currentFocused + 1 % menuItems.length;
         } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
           e.preventDefault()
-          // currentMenuFocused = 
+          currentMenuFocused = currentFocused - 1 + menuItems.length % menuItems.length
         }
       })
     })
