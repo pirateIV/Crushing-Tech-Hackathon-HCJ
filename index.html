@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="shortcut icon" href="https://crushingit.tech/hackathon-assets/shopify-icon.svg" type="image/x-icon">
-  <link rel="stylesheet" href="app.css" />
+  <link rel="stylesheet" href="./app.css" />
 </head>
 
 <body>
@@ -93,18 +93,18 @@
                 </svg>
               </header>
               <ul class="profile-menu d-flex">
-                <a tabindex="0" href="https://admin.shopify.com" class="menu-item d-flex" role="menuitem">
-                  <img src="https://crushingit.tech/hackathon-assets/icon-store.svg" alt="store-img">
+                <a href="https://admin.shopify.com" class="menu-item d-flex" role="menuitem">
+                  <img aria-hidden="true" src="https://crushingit.tech/hackathon-assets/icon-store.svg" alt="store-img">
                   All stores
                 </a>
                 <hr>
-                <a tabindex="0" href="https://admin.shopify.com" class="menu-item" role="menuitem">Help Center</a>
-                <a tabindex="0" href="https://admin.shopify.com" class="menu-item" role="menuitem">Changelog</a>
-                <a tabindex="0" href="https://admin.shopify.com" class="menu-item" role="menuitem">Community forums</a>
-                <a tabindex="0" href="https://admin.shopify.com" class="menu-item" role="menuitem">Hire a Shopify partner</a>
-                <a tabindex="0" href="https://admin.shopify.com" class="menu-item" role="menuitem">Keyboard shortcuts</a>
+                <a href="https://admin.shopify.com" class="menu-item" role="menuitem">Help Center</a>
+                <a href="https://admin.shopify.com" class="menu-item" role="menuitem">Changelog</a>
+                <a href="https://admin.shopify.com" class="menu-item" role="menuitem">Community forums</a>
+                <a href="https://admin.shopify.com" class="menu-item" role="menuitem">Hire a Shopify partner</a>
+                <a href="https://admin.shopify.com" class="menu-item" role="menuitem">Keyboard shortcuts</a>
                 <hr>
-                <div class="user d-flex">
+                <div class="user">
                   <h4>David Micheal</h4>
                   <small>davidmicheal@gmail.com</small>
                 </div>
@@ -117,7 +117,7 @@
       </nav>
 
       <section class="container">
-        <div class="plan">
+        <div class="plan d-flex">
           <div class="plan-content d-flex">
             <p>Extend your trial for $1/month for 3 months on select plans.</p>
             <div class="plan-content-right d-flex">
@@ -140,28 +140,28 @@
             <header>
               <div class="menu-top d-flex">
                 <h4>Setup guide</h4>
-                <span class="toggle-setup" aria-expanded="true" aria-controls="accordion" tabindex="0" id="toggleSetup">
+                <span class="toggle-setup" aria-expanded="true" aria-haspopup="tree" aria-controls="accordion" tabindex="0" id="toggleSetup">
                   <img src="https://crushingit.tech/hackathon-assets/icon-arrow-down.svg" alt="toggle-icon">
                 </span>
               </div>
               <p class="m-0">Use this personalized guide to get your store up and running</p>
             </header>
-            <div class="progress d-flex">
+            <div class="progress d-flex" aria-label="Progress bar">
               <p class="m-0"><span class="completed-step">0</span> / <span class="total-steps">5</span> completed</p>
-              <div class="progress-container">
-                <div class="progress-bar" role="progressbar"></div>
+              <div class="progress-container" aria-valuemin="0" aria-valuemax="5" role="progressbar">
+                <div class="progress-bar" aria-valuenow="0"></div>
               </div>
             </div>
           </section>
 
-          <div class="accordion" id="accordion" aria-labelledby="toggleSetup">
+          <div class="accordion" id="accordion" aria-label="Setup open" aria-expanded="true" aria-labelledby="toggleSetup">
             <div aria-expanded="true" class="accordion-item open">
               <div class="accordion-header d-flex">
-               <button class="step-check" checked="false" role="checkbox"></button>
+               <button class="step-check" role="checkbox" checked="false" aria-checked="false"></button>
                 <span role="heading">Customize your oneline store</span>
               </div>
               <div class="content">
-                <p>Choose a theme and add your logo, colors, and images to reflect your brand. <a href=""> Learn
+                <p>Choose a theme and add your logo, colors, and images to reflect your brand. <a href="https://help.shopify.com"> Learn
                     more</a></p>
                 <button>Customize theme</button>
               </div>
@@ -169,6 +169,7 @@
                 <img src="https://crushingit.tech/hackathon-assets/customise-store.png" alt="customize-store">
               </div>
             </div>
+            <span></span>
 
             <div aria-expanded="false" class="accordion-item">
               <div class="accordion-header d-flex">
@@ -176,7 +177,7 @@
                 <span role="heading">Add your first product</span>
               </div>
               <div class="content">
-                <p>Write a description, add photos, and set pricing for the products you plan to sell. <a href=""> Learn
+                <p>Write a description, add photos, and set pricing for the products you plan to sell. <a href="https://help.shopify.com"> Learn
                     more</a></p>
                 <div class="btns">
                   <button>Import product</button>
@@ -195,7 +196,7 @@
                 <span role="heading">Add a custom domain</span>
               </div>
               <div class="content">
-                <p>Your current domain is 222219.myshopify.com but you can add a custom domain to help customers find your online store. <a href=""> Learn
+                <p>Your current domain is 222219.myshopify.com but you can add a custom domain to help customers find your online store. <a href="https://help.shopify.com"> Learn
                     more</a></p>
                 <button>Add domain</button>
               </div>
@@ -211,7 +212,7 @@
               </div>
               <div class="content">
                 <p>Your temporary store name is currently Davii collections. The store name appears in your admin and
-                  your online store. <a href=""> Learn
+                  your online store. <a href="https://help.shopify.com"> Learn
                     more</a></p>
                 <button>Name store </button>
               </div>
@@ -227,7 +228,7 @@
               </div>
               <div class="content">
                 <p>Choose a payment provider to start accepting payments. You’ll need to create an account with the
-                  payment provider and set it up with your Shopify store. <a href=""> Learn
+                  payment provider and set it up with your Shopify store. <a href="https://help.shopify.com"> Learn
                     more</a></p>
                 <button>Set up payment</button>
               </div>
@@ -241,7 +242,7 @@
       </section>
     </div>
   </main>
-  <script src="app.js"></script>
+  <script src="./app.js"></script>
 </body>
 
 </html>

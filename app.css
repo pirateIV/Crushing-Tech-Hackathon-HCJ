@@ -65,6 +65,13 @@ small {
   color: var(--font-mid-color);
   font-size: 12px;
 }
+button {
+  cursor: pointer;
+}
+.hidden {
+  transition: var(--transition);
+  animation: fadeInOut 1s linear;
+}
 
 /* Classes */
 .m-0 {
@@ -82,15 +89,23 @@ small {
 .logo-mobile {
   display: none;
 }
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+.completed-icon {
+  animation-name: spinAndZoomIn;
+  animation-duration: 300ms;
+  animation-timing-function: linear;
+}
 .toggle-setup {
   width: 28px;
   height: 28px;
   padding: 4px;
   border-radius: 6px;
 }
-.d-flex {
-  display: flex;
-  align-items: center;
+.toggle-setup img {
+  transition: var(--transition);
 }
 .card {
   border-radius: 14px;
@@ -105,6 +120,20 @@ small {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 4px;
+}
+.step-check:focus {
+  outline: 2px solid #005BD3;
+  padding: 4px;
+  border-radius: 6px;
+  gap: 8px;
+}
+.step-check[checked='false']:hover circle {
+  stroke-dasharray: 0 0;
+}
+.step-check[checked='false']:focus circle {
+  fill: #d9d9d9;
+  stroke-dasharray: 0 0;
 }
 .btns {
   display: flex;
@@ -116,6 +145,7 @@ small {
   border-radius: 6px;
 }
 .btn-light {
+  border: 1px solid #0000001a;
   transition: var(--transition);
   background-color: var(--state-light-default);
 }
@@ -147,7 +177,7 @@ small {
 }
 .btn-light:hover,
 .menu-item:hover,
- .btns button:first-child:hover {
+.btns button:first-child:hover {
   background-color: var(--state-hover);
 }
 .btn-light:active,
@@ -214,6 +244,7 @@ body {
   transition: var(--transition);
   border: var(--search-default);
   background-color: var(--shade-200);
+  align-items: center;
 }
 .navbar .search-box input {
   border: 0;
@@ -275,12 +306,10 @@ body {
 .setup .alert-dropdown {
   position: absolute;
   right: 0px;
-  z-index: 2;
+  z-index: 100;
   top: 64px;
   height: 384px;
   width: 320px;
-  animation: 0.2s fadeInOut ease-in-out forwards;
-  cursor: default;
 }
 
 .setup .dropdown-content header {
@@ -356,11 +385,11 @@ body {
   border-radius: 8px;
   margin: 0 auto;
   gap: 8px;
-  cursor: pointer;
-
+  list-style: none;
   font-weight: 400;
   font-size: 13px;
   color: var(--font-dark-color);
+  cursor: pointer;
 }
 .setup .dropdown-content .user,
 .setup .dropdown-content .menu-item {
@@ -390,6 +419,7 @@ body {
 
 .container .plan-content {
   justify-content: space-between;
+  width: inherit;
 }
 .container .plan p,
 .alert-dropdown p {
@@ -403,16 +433,19 @@ body {
   flex-direction: row-reverse;
 }
 .container .plan-content-right .select-btn {
-  width: 99px;
+  width: 100px;
   height: 28px;
   font-weight: 600;
-  padding: 6px 12px;
+  /* padding: 6px 12px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--font-pure-dark);
   border-radius: 6px;
   font-size: 12px;
   font-family: inherit;
   cursor: pointer;
-  box-shadow: 0px -1px 0px 0px #B5B5B5 inset;
+  box-shadow: 0px -1px 0px 0px #b5b5b5 inset;
 }
 .container .plan-content-right span {
   display: flex;
@@ -538,13 +571,19 @@ body {
   border-left-width: 1.5px;
   border-color: var(--stroke-light);
   border-radius: 6px;
-  box-shadow: 0px 0px 0px 1.5px rgba(51, 51, 51, 1),
-    0px 1px 0px 1.5px rgba(51, 51, 51, 1), 0px 2px 0px 0px rgba(0, 0, 0, 1);
+  box-shadow: 0px 0px 0px 1.5px #333333,
+    0px 1px 0px 1.5px #333333,
+    0px 2px 0px 0px #000000;
+}
+.accordion-item button:last-child:hover {
+  background-color: #2a2a2a;
 }
 .accordion-item button:last-child:focus {
-  /* box-shadow: 0px 1px 0px 0px #000000 inset; */
-  outline: var(--state-focused);
-  border: 1px solid white;
+  outline: 0;
+  box-shadow: 0px 0px 0px 1.5px #333,
+    0px 0px 0px 3px #fff,
+    0px 0px 0px 5px #005bd3;
+  /* box-shadow: 0px -1px 0px 0px #b5b5b5 inset; */
 }
 
 .accordion-item.open .accordion-illustration::after {
@@ -687,14 +726,14 @@ body {
   }
 }
 
-@keyframes fadeInOut {
+/* @keyframes fadeInOut {
   0% {
-    opacity: 0;
-  }
-  100% {
     opacity: 1;
   }
-}
+  100% {
+    opacity: 0;
+  }
+} */
 
 @keyframes rotateAnimation {
   0% {
@@ -707,4 +746,15 @@ body {
 
 .rotate {
   animation: rotateAnimation 1s linear;
+}
+
+@keyframes spinAndZoomIn {
+  0% {
+    transform: scale(0) rotate(270deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
 }
