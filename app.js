@@ -1,30 +1,32 @@
 (function app() {
   const toggleMenuBtn = document.getElementById('profile-menu');
-  const expandNotifications = document.getElementById('showAlertBtn');
+  const showAlerts = document.getElementById('showAlertBtn');
 
   const accordion = document.getElementById('accordion');
   const expandCollapseAccordion = document.getElementById('toggleSetup');
-  const notificationsMenu = document.getElementById('alertDropdown');
 
   const profileMenu = document.getElementById('dropdown-menu');
-
-  const menuItems = profileMenu.querySelectorAll('[role="menuitem"]');
+  const notificationsMenu = document.getElementById('alertDropdown');
+  const profileMenuMsg = document.getElementById('profileMenuMsg');
+  const notificationsMenuMsg = document.getElementById('notificationsMenuMsg');
 
   const accordionItems = accordion.querySelectorAll('.accordion-item');
+  const menuItems = profileMenu.querySelectorAll('[role="menuitem"]');
+  const checkStepsBtns = Array.from(
+    document.querySelectorAll('[role="checkbox"]')
+  );
+
   const plan = document.querySelector('.plan');
   const setup = document.querySelector('.setup-guide');
   const cancelPlan = plan.querySelector('.plan-content-right .cancel-btn');
 
-  const checkStepsBtns = Array.from(
-    document.querySelectorAll('[role="checkbox"]')
-  );
   const progress = document.querySelector('.progress-bar');
   let completedStep = document.querySelector('.completed-step');
 
   let steps = 0;
   let maxSteps = 5;
 
-  const icons = `
+  const checkboxIcons = `
     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
       <circle cx="12" cy="12" r="10" stroke="#8A8A8A" stroke-width="2.08333" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"></circle>
     </svg>
@@ -42,26 +44,24 @@
       <path d="M17.2738 8.52629C17.6643 8.91682 17.6643 9.54998 17.2738 9.94051L11.4405 15.7738C11.05 16.1644 10.4168 16.1644 10.0263 15.7738L7.3596 13.1072C6.96908 12.7166 6.96908 12.0835 7.3596 11.693C7.75013 11.3024 8.38329 11.3024 8.77382 11.693L10.7334 13.6525L15.8596 8.52629C16.2501 8.13577 16.8833 8.13577 17.2738 8.52629Z" fill="#fff"></path>
     </svg>
   `;
-  let iconsIndex = icons.split('|');
+  let iconsIndex = checkboxIcons.split('|');
   let lastIcon = iconsIndex.length - 1;
   checkStepsBtns.forEach((button, index) => {
     let current = 0;
 
-    button.setAttribute('aria-label', `Step ${index + 1} marked incomplete`);
-    // button.ariaHidden = true
+    button.setAttribute('aria-label', `Step ${index + 1} incomplete`);
 
-    button.addEventListener('click', () => {
+    function handleCheckStepBtns(button) {
       const isChecked = button.getAttribute('checked') === 'true';
-      const ariaChecked = button.getAttribute('aria-checked') === 'true'
+      const ariaChecked = button.getAttribute('aria-checked') === 'true';
       button.setAttribute('checked', !isChecked);
-      button.setAttribute('aria-checked', !ariaChecked)
+      button.setAttribute('aria-checked', !ariaChecked);
       steps += isChecked ? -1 : 1;
-      if(!isChecked) {
-        button.setAttribute('aria-label', `Step ${index + 1} marked complete`);
+      if (!isChecked) {
+        button.setAttribute('aria-label', `Step ${index + 1}  complete`);
       } else {
-        button.setAttribute('aria-label', `Step ${index + 1} marked incomplete`);
+        button.setAttribute('aria-label', `Step ${index + 1}  incomplete`);
       }
-
       setTimeout(() => {
         progress.style.width = (steps / maxSteps) * 100 + '%';
       }, 150);
@@ -72,6 +72,7 @@
           current++;
           button.innerHTML = iconsIndex[current];
 
+          // rotate the 3rd and 2nd to the last icons
           if (current === lastIcon - 2 || current === lastIcon - 1) {
             button.firstElementChild.classList.add('rotate');
           } else {
@@ -83,88 +84,124 @@
             button.innerHTML = iconsIndex[lastIcon];
             button.firstElementChild.classList.add('completed-icon');
           }
-        }, 200);  
-
+        }, 200);
       }
+    }
 
+    button.addEventListener('keypress', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+      }
     });
 
-    button.addEventListener('click', () => {
+    button.addEventListener('click', e => {
+      handleCheckStepBtns(button);
       const isCheckedFalse = button.getAttribute('checked') === 'false';
       if (isCheckedFalse) {
         current = 0;
         button.innerHTML = iconsIndex[0];
       }
+      // Get all unchecked checkboxes
+      let uncheckedBoxes = checkStepsBtns.filter(
+        btn => btn.getAttribute('checked') === 'false'
+      );
+
+      // If there are any unchecked boxes, focus on the first one
+      if (uncheckedBoxes.length > 0) {
+        uncheckedBoxes[0].focus();
+      }
     });
 
+    // set the empty button element to first svg on the array
     button.innerHTML = iconsIndex[current];
   });
 
   function openProfileMenu() {
     toggleMenuBtn.setAttribute('aria-expanded', 'true');
+    profileMenuMsg.ariaLabel = 'menu Opened';
     menuItems.item(0).focus();
 
+    profileMenu.addEventListener('keyup', handleProfileEscKey);
+
     menuItems.forEach((menuitem, i) => {
-      menuitem.addEventListener('keyup', e => {
+      menuitem.addEventListener('keydown', e => {
         handleProfileKeyEvents(e, i);
-        e.preventDefault()
+        e.preventDefault();
       });
     });
-
-    profileMenu.addEventListener('keyup', handleProfileEscKey);
   }
-
-  function handleProfileKeyEvents(e, menuIndex) {
-    const isLastMenuItem =
-      menuIndex === menuItems.length - 1;
-    const isFirstMenuItem = menuIndex === 0;
-
-    const nextMenuItem = menuItems.item(
-      menuIndex + 1
-    );
-    const previousMenuItem = menuItems.item(
-      menuIndex - 1
-    );
-
-  
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-      if (isLastMenuItem) {
-        menuItems.item(0).focus();
-        return;
-      } 
-
-      nextMenuItem.focus()
-    }
-    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-      if (isFirstMenuItem) {
-        menuItems.item(menuItems.length - 1).focus();
-        return;
-      } 
-    previousMenuItem.focus()
-    }
-  
-  }
-  
 
   function closeProfileMenu() {
-    toggleMenuBtn.setAttribute('aria-expanded', 'false');
+    toggleMenuBtn.setAttribute('aria-expanded', 'false'); 
+    profileMenu.classList.remove('show');
   }
+  let currentIndex = 0;
+
+  function handleProfileKeyEvents(e, menuIndex) {
+    console.log(e.target, menuIndex)
+    // currentIndex++
+    // menuItems.item(currentIndex).focus()
+
+    if(e.key === 'ArrowRight' ||)
+  }
+  // function handleProfileKeyEvents(e, menuIndex) {
+  //   const isLastMenuItem = menuIndex === menuItems.length - 1;
+  //   const isFirstMenuItem = menuIndex === 0;
+
+  //   const nextMenuItem = menuItems.item(menuIndex + 1);
+  //   const previousMenuItem = menuItems.item(menuIndex - 1);
+
+  //   if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+  //     if (isLastMenuItem) {
+  //       menuItems.item(0).focus();
+  //       return;
+  //     }
+
+  //     nextMenuItem.focus();
+  //   }
+  //   if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+  //     if (isFirstMenuItem) {
+  //       menuItems.item(menuItems.length - 1).focus();
+  //       return;
+  //     }
+  //     previousMenuItem.focus();
+  //   }
+  // }
 
   function toggleProfileMenu() {
-    profileMenu.hidden = !profileMenu.hidden;
+    profileMenu.classList.toggle('show');
 
+    if (notificationsMenu.classList.contains('show')) {
+      notificationsMenu.classList.remove('show');
+    }
     const modalExpanded =
       toggleMenuBtn.getAttribute('aria-expanded') === 'true';
 
-    modalExpanded ? closeProfileMenu() : openProfileMenu();
-
-    notificationsMenu.hidden = true;
+    if (modalExpanded) {
+      profileMenuMsg.ariaLabel = 'menu closed';
+      closeProfileMenu();
+    } else {
+      profileMenuMsg.ariaLabel = 'menu opened';
+      openProfileMenu();
+    }
   }
 
   function toggleNotifications() {
-    notificationsMenu.hidden = !notificationsMenu.hidden;
+    notificationsMenu.classList.toggle('show');
+    toggleMenuBtn.setAttribute('aria-expanded', 'false');
+    if (profileMenu.classList.contains('show')) {
+      profileMenu.classList.remove('show');
+    }
+    const modalExpanded =
+      showAlert.getAttribute('aria-expanded') === 'true';
 
-    profileMenu.hidden = true;
+    if (modalExpanded) {
+      notificationsMenuMsg.ariaLabel = 'alert closed';
+      closeProfileMenu();
+    } else {
+      notificationsMenuMsg.ariaLabel = 'alert opened';
+      openProfileMenu();
+    }
   }
 
   function handleSetupKeyPress(e) {
@@ -175,7 +212,7 @@
 
   function handleProfileEscKey(e) {
     if (e.key === 'Escape') {
-      toggleProfileMenu();
+      closeProfileMenu();
     }
   }
 
@@ -203,14 +240,14 @@
 
     if (isVisible === 'flex') {
       accordion.style.display = 'none';
-      accordion.ariaLabel = 'Setup closed'
-      accordion.ariaExpanded = 'false'
+      accordion.ariaLabel = 'Setup closed';
+      accordion.ariaExpanded = 'false';
       expandCollapseAccordion.ariaExpanded = false;
       expandCollapseAccordion.firstElementChild.style.transform = `rotate(${180}deg)`;
     } else {
       accordion.style.display = 'flex';
-      accordion.ariaLabel = 'Setup opened'
-      accordion.ariaExpanded = 'true'
+      accordion.ariaLabel = 'Setup opened';
+      accordion.ariaExpanded = 'true';
       expandCollapseAccordion.ariaExpanded = true;
       expandCollapseAccordion.firstElementChild.style.transform = `rotate(-${180}deg)`;
     }
@@ -252,11 +289,11 @@
     });
   });
   cancelPlan.addEventListener('click', () => {
-    plan.remove()
+    plan.remove();
     setup.classList.add('transform');
   });
 
-  expandNotifications.addEventListener('click', toggleNotifications);
+  showAlerts.addEventListener('click', toggleNotifications);
   expandCollapseAccordion.addEventListener('click', () => {
     toggleSetup();
   });

@@ -44,14 +44,16 @@
                   fill="#e3e3e3" />
               </svg>
             </span>
+            <span id="notificationsMenuMsg" aria-label="menu closed" aria-live=""></span>
           </button>
-          <button class="user-info d-flex" aria-expanded="false" aria-haspopup="true" aria-controls="dropdown"
-            id="profile-menu">
+          <button class="user-info d-flex" aria-expanded="false" aria-haspopup="true"
+            aria-controls="dropdown" id="profile-menu">
             <p class="username">Davii Collections</p>
-            <span class="user-badge d-flex" tabindex="0">DC</span>  
+            <span class="user-badge d-flex" aria-hidden="true" tabindex="0">DC</span>
+            <span id="profileMenuMsg" aria-label="menu closed" aria-live="polite"></span>
           </button>
 
-          <div class="alert-dropdown card" aria-controls="showAlertBtn" id="alertDropdown" hidden>
+          <div class="alert-dropdown card" aria-controls="showAlertBtn" id="alertDropdown">
             <header class="d-flex">
               <h4>Alerts</h4>
               <section class="icons d-flex">
@@ -77,10 +79,10 @@
               </section>
             </header>
             <div class="content d-flex">
-              <p>Alerts about your store and account will show here</p>
-            </div>
+                <p>Alerts about your store and account will show here</p>
+              </div>
           </div>
-          <div class="dropdown card" role="menu" aria-labelledby="profile-menu" id="dropdown-menu" hidden>
+          <div class="dropdown card" role="menu" aria-labelledby="profile-menu" id="dropdown-menu">
             <div class="dropdown-content">
               <header class="d-flex">
                 <div class="merchant d-flex">
@@ -97,13 +99,13 @@
                   <img aria-hidden="true" src="https://crushingit.tech/hackathon-assets/icon-store.svg" alt="store-img">
                   All stores
                 </a>
-                <hr>
+                <hr class="divider">
                 <a href="https://admin.shopify.com" class="menu-item" role="menuitem">Help Center</a>
                 <a href="https://admin.shopify.com" class="menu-item" role="menuitem">Changelog</a>
                 <a href="https://admin.shopify.com" class="menu-item" role="menuitem">Community forums</a>
                 <a href="https://admin.shopify.com" class="menu-item" role="menuitem">Hire a Shopify partner</a>
                 <a href="https://admin.shopify.com" class="menu-item" role="menuitem">Keyboard shortcuts</a>
-                <hr>
+                <hr class="divider">
                 <div class="user">
                   <h4>David Micheal</h4>
                   <small>davidmicheal@gmail.com</small>
@@ -140,7 +142,8 @@
             <header>
               <div class="menu-top d-flex">
                 <h4>Setup guide</h4>
-                <span class="toggle-setup" aria-expanded="true" aria-haspopup="tree" aria-controls="accordion" tabindex="0" id="toggleSetup">
+                <span class="toggle-setup" aria-expanded="true" aria-haspopup="tree" aria-controls="accordion"
+                  tabindex="0" id="toggleSetup">
                   <img src="https://crushingit.tech/hackathon-assets/icon-arrow-down.svg" alt="toggle-icon">
                 </span>
               </div>
@@ -154,14 +157,16 @@
             </div>
           </section>
 
-          <div class="accordion" id="accordion" aria-label="Setup open" aria-expanded="true" aria-labelledby="toggleSetup">
+          <div class="accordion" id="accordion" aria-label="Setup open" aria-expanded="true"
+            aria-labelledby="toggleSetup">
             <div aria-expanded="true" class="accordion-item open">
               <div class="accordion-header d-flex">
-               <button class="step-check" role="checkbox" checked="false" aria-checked="false"></button>
+                <button class="step-check" role="checkbox" checked="false" aria-checked="false"></button>
                 <span role="heading">Customize your oneline store</span>
               </div>
               <div class="content">
-                <p>Choose a theme and add your logo, colors, and images to reflect your brand. <a href="https://help.shopify.com"> Learn
+                <p>Choose a theme and add your logo, colors, and images to reflect your brand. <a
+                    href="https://help.shopify.com"> Learn
                     more</a></p>
                 <button>Customize theme</button>
               </div>
@@ -173,11 +178,12 @@
 
             <div aria-expanded="false" class="accordion-item">
               <div class="accordion-header d-flex">
-               <button class="step-check" checked="false" role="checkbox"></button>
+                <button class="step-check" checked="false" role="checkbox"></button>
                 <span role="heading">Add your first product</span>
               </div>
               <div class="content">
-                <p>Write a description, add photos, and set pricing for the products you plan to sell. <a href="https://help.shopify.com"> Learn
+                <p>Write a description, add photos, and set pricing for the products you plan to sell. <a
+                    href="https://help.shopify.com"> Learn
                     more</a></p>
                 <div class="btns">
                   <button>Import product</button>
@@ -192,11 +198,12 @@
 
             <div aria-expanded="false" class="accordion-item">
               <div class="accordion-header d-flex">
-               <button class="step-check" checked="false" role="checkbox"></button>
+                <button class="step-check" checked="false" role="checkbox"></button>
                 <span role="heading">Add a custom domain</span>
               </div>
               <div class="content">
-                <p>Your current domain is 222219.myshopify.com but you can add a custom domain to help customers find your online store. <a href="https://help.shopify.com"> Learn
+                <p>Your current domain is 222219.myshopify.com but you can add a custom domain to help customers find
+                  your online store. <a href="https://help.shopify.com"> Learn
                     more</a></p>
                 <button>Add domain</button>
               </div>
@@ -207,7 +214,7 @@
 
             <div aria-expanded="false" class="accordion-item">
               <div class="accordion-header d-flex">
-               <button class="step-check" checked="false" role="checkbox"></button>
+                <button class="step-check" checked="false" role="checkbox"></button>
                 <span role="heading">Name your store</span>
               </div>
               <div class="content">
@@ -223,7 +230,7 @@
 
             <div aria-expanded="false" class="accordion-item ">
               <div class="accordion-header d-flex">
-               <button class="step-check" checked="false" role="checkbox"></button>
+                <button class="step-check" checked="false" role="checkbox"></button>
                 <span role="heading">Set up a payment provider</span>
               </div>
               <div class="content">
