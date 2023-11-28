@@ -1,6 +1,6 @@
 (function app() {
   const toggleMenuBtn = document.getElementById('profile-menu');
-  const showAlerts = document.getElementById('showAlertBtn');
+  const showAlert = document.getElementById('showAlertBtn');
 
   const accordion = document.getElementById('accordion');
   const expandCollapseAccordion = document.getElementById('toggleSetup');
@@ -132,41 +132,22 @@
   }
 
   function closeProfileMenu() {
-    toggleMenuBtn.setAttribute('aria-expanded', 'false'); 
+    toggleMenuBtn.setAttribute('aria-expanded', 'false');
     profileMenu.classList.remove('show');
   }
-  let currentIndex = 0;
 
   function handleProfileKeyEvents(e, menuIndex) {
-    console.log(e.target, menuIndex)
-    // currentIndex++
-    // menuItems.item(currentIndex).focus()
-
-    if(e.key === 'ArrowRight' ||)
+    let currentIndex = Array.from(menuItems).indexOf(e.target);
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      let nextIndex =
+        currentIndex === menuItems.length - 1 ? 0 : currentIndex + 1;
+      menuItems[nextIndex].focus();
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      let prevIndex =
+        currentIndex === 0 ? menuItems.length - 1 : currentIndex - 1;
+      menuItems[prevIndex].focus();
+    }
   }
-  // function handleProfileKeyEvents(e, menuIndex) {
-  //   const isLastMenuItem = menuIndex === menuItems.length - 1;
-  //   const isFirstMenuItem = menuIndex === 0;
-
-  //   const nextMenuItem = menuItems.item(menuIndex + 1);
-  //   const previousMenuItem = menuItems.item(menuIndex - 1);
-
-  //   if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-  //     if (isLastMenuItem) {
-  //       menuItems.item(0).focus();
-  //       return;
-  //     }
-
-  //     nextMenuItem.focus();
-  //   }
-  //   if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-  //     if (isFirstMenuItem) {
-  //       menuItems.item(menuItems.length - 1).focus();
-  //       return;
-  //     }
-  //     previousMenuItem.focus();
-  //   }
-  // }
 
   function toggleProfileMenu() {
     profileMenu.classList.toggle('show');
@@ -192,8 +173,7 @@
     if (profileMenu.classList.contains('show')) {
       profileMenu.classList.remove('show');
     }
-    const modalExpanded =
-      showAlert.getAttribute('aria-expanded') === 'true';
+    const modalExpanded = showAlert.getAttribute('aria-expanded') === 'true';
 
     if (modalExpanded) {
       notificationsMenuMsg.ariaLabel = 'alert closed';
@@ -293,7 +273,7 @@
     setup.classList.add('transform');
   });
 
-  showAlerts.addEventListener('click', toggleNotifications);
+  showAlert.addEventListener('click', toggleNotifications);
   expandCollapseAccordion.addEventListener('click', () => {
     toggleSetup();
   });
