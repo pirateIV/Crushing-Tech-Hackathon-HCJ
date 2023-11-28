@@ -123,16 +123,16 @@
 
     profileMenu.addEventListener('keyup', handleProfileEscKey);
 
-    menuItems.forEach((menuitem, i) => {
+    menuItems.forEach((menuitem) => {
       menuitem.addEventListener('keydown', e => {
-        handleProfileKeyEvents(e, i);
+        handleProfileKeyEvents(e);
         e.preventDefault();
       });
     });
   }
 
   function openAlertsMenu() {
-  
+
   }
 
   function closeProfileMenu() {
@@ -140,7 +140,7 @@
     profileMenu.classList.remove('show');
   }
 
-  function handleProfileKeyEvents(e, menuIndex) {
+  function handleProfileKeyEvents(e) {
     let currentIndex = Array.from(menuItems).indexOf(e.target);
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
       let nextIndex =

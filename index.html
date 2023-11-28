@@ -47,10 +47,10 @@
             <span id="notificationsMenuMsg" aria-label="menu closed" aria-live=""></span>
           </button>
           <button class="user-info d-flex" aria-expanded="false" aria-haspopup="true"
-            aria-controls="dropdown" id="profile-menu">
+          aria-controls="dropdown" id="profile-menu">
+          <span id="profileMenuMsg" aria-label="menu closed" aria-live="polite"></span>
             <p class="username">Davii Collections</p>
-            <span class="user-badge d-flex" aria-hidden="true" tabindex="0">DC</span>
-            <span id="profileMenuMsg" aria-label="menu closed" aria-live="polite"></span>
+            <span class="user-badge d-flex" tabindex="0">DC</span>
           </button>
 
           <div class="alert-dropdown card" aria-controls="showAlertBtn" id="alertDropdown">
@@ -123,7 +123,7 @@
           <div class="plan-content d-flex">
             <p>Extend your trial for $1/month for 3 months on select plans.</p>
             <div class="plan-content-right d-flex">
-              <span class="cancel-btn" tabindex="0" aria-label="Cancel">
+              <span class="cancel-btn" tabindex="0">
                 <svg width="20.5" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M14.4697 15.0303C14.7626 15.3232 15.2374 15.3232 15.5303 15.0303C15.8232 14.7374 15.8232 14.2626 15.5303 13.9697L11.5607 10L15.5303 6.03033C15.8232 5.73744 15.8232 5.26256 15.5303 4.96967C15.2374 4.67678 14.7626 4.67678 14.4697 4.96967L10.5 8.93934L6.53033 4.96967C6.23744 4.67678 5.76256 4.67678 5.46967 4.96967C5.17678 5.26256 5.17678 5.73744 5.46967 6.03033L9.43934 10L5.46967 13.9697C5.17678 14.2626 5.17678 14.7374 5.46967 15.0303C5.76256 15.3232 6.23744 15.3232 6.53033 15.0303L10.5 11.0607L14.4697 15.0303Z"
@@ -162,7 +162,7 @@
             <div aria-expanded="true" class="accordion-item open">
               <div class="accordion-header d-flex">
                 <button class="step-check" role="checkbox" checked="false" aria-checked="false"></button>
-                <span role="heading">Customize your oneline store</span>
+                <span>Customize your oneline store</span>
               </div>
               <div class="content">
                 <p>Choose a theme and add your logo, colors, and images to reflect your brand. <a
@@ -179,7 +179,7 @@
             <div aria-expanded="false" class="accordion-item">
               <div class="accordion-header d-flex">
                 <button class="step-check" checked="false" role="checkbox"></button>
-                <span role="heading">Add your first product</span>
+                <span>Add your first product</span>
               </div>
               <div class="content">
                 <p>Write a description, add photos, and set pricing for the products you plan to sell. <a
@@ -199,7 +199,7 @@
             <div aria-expanded="false" class="accordion-item">
               <div class="accordion-header d-flex">
                 <button class="step-check" checked="false" role="checkbox"></button>
-                <span role="heading">Add a custom domain</span>
+                <span>Add a custom domain</span>
               </div>
               <div class="content">
                 <p>Your current domain is 222219.myshopify.com but you can add a custom domain to help customers find
@@ -215,7 +215,7 @@
             <div aria-expanded="false" class="accordion-item">
               <div class="accordion-header d-flex">
                 <button class="step-check" checked="false" role="checkbox"></button>
-                <span role="heading">Name your store</span>
+                <span>Name your store</span>
               </div>
               <div class="content">
                 <p>Your temporary store name is currently Davii collections. The store name appears in your admin and
@@ -231,7 +231,7 @@
             <div aria-expanded="false" class="accordion-item ">
               <div class="accordion-header d-flex">
                 <button class="step-check" checked="false" role="checkbox"></button>
-                <span role="heading">Set up a payment provider</span>
+                <span>Set up a payment provider</span>
               </div>
               <div class="content">
                 <p>Choose a payment provider to start accepting payments. You’ll need to create an account with the
