@@ -91,28 +91,26 @@
     }
 
     button.addEventListener('keydown', e => {
+      // Check if the 'Enter' key was pressed
       if (e.key === 'Enter') {
-        e.preventDefault(); // Prevent the default button click behavior
-
         handleCheckStepBtns(button);
-
         const isCheckedFalse = button.getAttribute('checked') === 'false';
         if (isCheckedFalse) {
           current = 0;
           button.innerHTML = iconsIndex[0];
         }
-
         // Get all unchecked checkboxes
         let uncheckedBoxes = checkStepsBtns.filter(
           btn => btn.getAttribute('checked') === 'false'
         );
-
+    
         // If there are any unchecked boxes, focus on the first one
         if (uncheckedBoxes.length > 0) {
           uncheckedBoxes[0].focus();
         }
       }
     });
+    
     button.addEventListener('click', e => {
       handleCheckStepBtns(button);
       const isCheckedFalse = button.getAttribute('checked') === 'false';
