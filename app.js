@@ -1,6 +1,6 @@
 (function app() {
-  const toggleMenuBtn = document.getElementById('profile-menu');
   const showAlert = document.getElementById('showAlertBtn');
+  const toggleMenuBtn = document.getElementById('profile-menu');
 
   const accordion = document.getElementById('accordion');
   const expandCollapseAccordion = document.getElementById('toggleSetup');
@@ -12,6 +12,7 @@
 
   const accordionItems = accordion.querySelectorAll('.accordion-item');
   const menuItems = profileMenu.querySelectorAll('[role="menuitem"]');
+  const alertItems = document.querySelectorAll('.alert-item-icon');
   const checkStepsBtns = Array.from(
     document.querySelectorAll('[role="checkbox"]')
   );
@@ -62,6 +63,7 @@
       } else {
         button.setAttribute('aria-label', `Step ${index + 1}  incomplete`);
       }
+      // update progress width
       setTimeout(() => {
         progress.style.width = (steps / maxSteps) * 100 + '%';
       }, 150);
@@ -84,16 +86,33 @@
             button.innerHTML = iconsIndex[lastIcon];
             button.firstElementChild.classList.add('completed-icon');
           }
-        }, 200);
+        }, 500);
       }
     }
 
-    button.addEventListener('keypress', e => {
+    button.addEventListener('keydown', e => {
       if (e.key === 'Enter') {
-        e.preventDefault();
+        e.preventDefault(); // Prevent the default button click behavior
+
+        handleCheckStepBtns(button);
+
+        const isCheckedFalse = button.getAttribute('checked') === 'false';
+        if (isCheckedFalse) {
+          current = 0;
+          button.innerHTML = iconsIndex[0];
+        }
+
+        // Get all unchecked checkboxes
+        let uncheckedBoxes = checkStepsBtns.filter(
+          btn => btn.getAttribute('checked') === 'false'
+        );
+
+        // If there are any unchecked boxes, focus on the first one
+        if (uncheckedBoxes.length > 0) {
+          uncheckedBoxes[0].focus();
+        }
       }
     });
-
     button.addEventListener('click', e => {
       handleCheckStepBtns(button);
       const isCheckedFalse = button.getAttribute('checked') === 'false';
@@ -116,23 +135,16 @@
     button.innerHTML = iconsIndex[current];
   });
 
-  function openProfileMenu() {
-    toggleMenuBtn.setAttribute('aria-expanded', 'true');
-    profileMenuMsg.ariaLabel = 'menu Opened';
-    menuItems.item(0).focus();
+  alertItems.forEach((item, index) => {
+    item.addEventListener('focus', e => {});
+  });
 
-    profileMenu.addEventListener('keyup', handleProfileEscKey);
-
-    menuItems.forEach((menuitem) => {
-      menuitem.addEventListener('keydown', e => {
-        handleProfileKeyEvents(e);
-        e.preventDefault();
-      });
-    });
+  function openNotificationsMenu() {
+    showAlert.setAttribute('aria-expanded', 'true');
   }
 
-  function openAlertsMenu() {
-
+  function closeNotificationsMenu() {
+    showAlert.setAttribute('aria-expanded', 'false');
   }
 
   function closeProfileMenu() {
@@ -140,22 +152,40 @@
     profileMenu.classList.remove('show');
   }
 
+  function openProfileMenu() {
+    toggleMenuBtn.setAttribute('aria-expanded', 'true');
+    profileMenuMsg.ariaLabel = 'menu Opened';
+    menuItems.item(0).focus();
+
+    profileMenu.addEventListener('keyup', handleProfileEscKey);
+
+    menuItems.forEach(menuitem => {
+      menuitem.addEventListener('keydown', e => {
+        handleProfileKeyEvents(e);
+        e.preventDefault();
+      });
+    });
+  }
   function handleProfileKeyEvents(e) {
     let currentIndex = Array.from(menuItems).indexOf(e.target);
+    let lastMenuItem = menuItems.length - 1;
+
+    // mouse controls for dropdown menu items
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-      let nextIndex =
-        currentIndex === menuItems.length - 1 ? 0 : currentIndex + 1;
+      let nextIndex = currentIndex === lastMenuItem ? 0 : currentIndex + 1;
       menuItems[nextIndex].focus();
     } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-      let prevIndex =
-        currentIndex === 0 ? menuItems.length - 1 : currentIndex - 1;
+      let prevIndex = currentIndex === 0 ? lastMenuItem : currentIndex - 1;
       menuItems[prevIndex].focus();
+    } else if (e.key === 'Home') {
+      menuItems[0].focus();
     }
   }
 
   function toggleProfileMenu() {
     profileMenu.classList.toggle('show');
-
+    showAlert.setAttribute('aria-expanded', 'false');
+    notificationsMenuMsg.ariaLabel = 'alerts menu closed';
     if (notificationsMenu.classList.contains('show')) {
       notificationsMenu.classList.remove('show');
     }
@@ -180,9 +210,11 @@
     const modalExpanded = showAlert.getAttribute('aria-expanded') === 'true';
 
     if (modalExpanded) {
-      notificationsMenuMsg.ariaLabel = 'alert closed';
+      notificationsMenuMsg.ariaLabel = 'alerts menu closed';
+      closeNotificationsMenu();
     } else {
-      notificationsMenuMsg.ariaLabel = 'alert opened';
+      notificationsMenuMsg.ariaLabel = 'alerts menu opened';
+      openNotificationsMenu();
     }
   }
 

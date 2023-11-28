@@ -97,6 +97,9 @@ button {
   display: flex;
   align-items: center;
 }
+.rotate {
+  animation: rotateAnimation 1s linear;
+}
 .completed-icon {
   animation-name: spinAndZoomIn;
   animation-duration: 300ms;
@@ -126,8 +129,11 @@ button {
   justify-content: center;
   padding: 4px;
 }
+.step-check circle {
+  transition: var(--transition);
+}
 .step-check:focus {
-  outline: 2px solid #005BD3;
+  outline: 2px solid #005bd3;
   padding: 4px;
   border-radius: 6px;
   gap: 8px;
@@ -148,7 +154,7 @@ button {
   padding: 6px 12px 6px 12px;
   border-radius: 6px;
 }
-.btns button{
+.btns button {
   font-weight: 600;
   font-size: 12px;
 }
@@ -197,6 +203,14 @@ button {
 .menu-item:focus {
   outline: var(--state-focused);
   cursor: n-resize;
+}
+.alert-item-icon {
+  height: 20px;
+  width: 20px;
+  border-radius: 4px;
+}
+.alert-item-icon:focus, .alert-item-icon:focus-visible {
+  border: 1px solid #005bd3;
 }
 .container .plan-content-right .select-btn:active {
   box-shadow: inset 1px 3px 0 rgba(228, 228, 228, 1),
@@ -316,7 +330,6 @@ body {
   max-height: 0;
   overflow: hidden;
   display: none;
-  /* box-shadow: none; */
 }
 .setup .dropdown.show {
   display: block;
@@ -603,8 +616,7 @@ body {
   border-left-width: 1.5px;
   border-color: var(--stroke-light);
   border-radius: 6px;
-  box-shadow: 0px 0px 0px 1.5px #333333,
-    0px 1px 0px 1.5px #333333,
+  box-shadow: 0px 0px 0px 1.5px #333333, 0px 1px 0px 1.5px #333333,
     0px 2px 0px 0px #000000;
 }
 .accordion-item button:last-child:hover {
@@ -612,10 +624,8 @@ body {
 }
 .accordion-item button:last-child:focus {
   outline: 0;
-  box-shadow: 0px 0px 0px 1.5px #333,
-    0px 0px 0px 3px #fff,
+  box-shadow: 0px 0px 0px 1.5px #333, 0px 0px 0px 3px #fff,
     0px 0px 0px 5px #005bd3;
-  /* box-shadow: 0px -1px 0px 0px #b5b5b5 inset; */
 }
 
 .accordion-item.open .accordion-illustration::after {
@@ -776,10 +786,6 @@ body {
   100% {
     transform: rotate(720deg);
   }
-}
-
-.rotate {
-  animation: rotateAnimation 1s linear;
 }
 
 @keyframes spinAndZoomIn {
