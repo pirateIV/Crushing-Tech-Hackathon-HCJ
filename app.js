@@ -131,6 +131,10 @@
     });
   }
 
+  function openAlertsMenu() {
+  
+  }
+
   function closeProfileMenu() {
     toggleMenuBtn.setAttribute('aria-expanded', 'false');
     profileMenu.classList.remove('show');
@@ -177,10 +181,8 @@
 
     if (modalExpanded) {
       notificationsMenuMsg.ariaLabel = 'alert closed';
-      closeProfileMenu();
     } else {
       notificationsMenuMsg.ariaLabel = 'alert opened';
-      openProfileMenu();
     }
   }
 
