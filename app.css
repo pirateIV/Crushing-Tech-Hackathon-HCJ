@@ -72,10 +72,6 @@ small {
 button {
   cursor: pointer;
 }
-/* .hidden {
-  transition: var(--transition);
-  animation: fadeInOut 1s linear;
-} */
 
 /* Classes */
 .m-0 {
@@ -305,12 +301,14 @@ body {
 }
 .setup button.user-info {
   width: 142px;
+  height: 32px;
   margin: 0;
   padding: 0;
   padding-left: 8px;
   justify-content: space-between;
 }
 .setup .user-info .username,
+
 .user-badge {
   font-size: 12px;
   font-weight: var(--font-500);

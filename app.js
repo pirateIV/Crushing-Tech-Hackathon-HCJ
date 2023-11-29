@@ -45,6 +45,7 @@
       <path d="M17.2738 8.52629C17.6643 8.91682 17.6643 9.54998 17.2738 9.94051L11.4405 15.7738C11.05 16.1644 10.4168 16.1644 10.0263 15.7738L7.3596 13.1072C6.96908 12.7166 6.96908 12.0835 7.3596 11.693C7.75013 11.3024 8.38329 11.3024 8.77382 11.693L10.7334 13.6525L15.8596 8.52629C16.2501 8.13577 16.8833 8.13577 17.2738 8.52629Z" fill="#fff"></path>
     </svg>
   `;
+
   let iconsIndex = checkboxIcons.split('|');
   let lastIcon = iconsIndex.length - 1;
   checkStepsBtns.forEach((button, index) => {
@@ -90,27 +91,6 @@
       }
     }
 
-    button.addEventListener('keydown', e => {
-      // Check if the 'Enter' key was pressed
-      if (e.key === 'Enter') {
-        handleCheckStepBtns(button);
-        const isCheckedFalse = button.getAttribute('checked') === 'false';
-        if (isCheckedFalse) {
-          current = 0;
-          button.innerHTML = iconsIndex[0];
-        }
-        // Get all unchecked checkboxes
-        let uncheckedBoxes = checkStepsBtns.filter(
-          btn => btn.getAttribute('checked') === 'false'
-        );
-    
-        // If there are any unchecked boxes, focus on the first one
-        if (uncheckedBoxes.length > 0) {
-          uncheckedBoxes[0].focus();
-        }
-      }
-    });
-    
     button.addEventListener('click', e => {
       handleCheckStepBtns(button);
       const isCheckedFalse = button.getAttribute('checked') === 'false';
@@ -164,6 +144,8 @@
       });
     });
   }
+
+  // key events for profile menu dropdown
   function handleProfileKeyEvents(e) {
     let currentIndex = Array.from(menuItems).indexOf(e.target);
     let lastMenuItem = menuItems.length - 1;
@@ -228,21 +210,29 @@
     }
   }
 
-  let currentFocused = 0;
-
+  
   function handleCheckboxes() {
+    let currentFocused = 0;
     checkStepsBtns.forEach((btn, index) => {
       btn.addEventListener('keydown', e => {
-        if (e.key === 'ArrowDown') {
-          e.preventDefault();
+        if (e.key === 'Enter') {
+          const isChecked = btn.getAttribute('checked') === 'true';
+          if (!isChecked) {
+            // After handling the checkbox, move focus to the next checkbox
+            currentFocused = (currentFocused + 1) % checkStepsBtns.length;
+            checkStepsBtns[currentFocused].focus();
+          }
+        } else if (e.key === 'ArrowDown') {
           currentFocused = (currentFocused + 1) % checkStepsBtns.length;
-        } else if (e.key === 'ArrowUp') {
+          checkStepsBtns[currentFocused].focus();
           e.preventDefault();
+        } else if (e.key === 'ArrowUp') {
           currentFocused =
-            (currentFocused - 1 + checkStepsBtns.length) %
-            checkStepsBtns.length;
+          (currentFocused - 1 + checkStepsBtns.length) %
+          checkStepsBtns.length;
+          checkStepsBtns[currentFocused].focus();
+          e.preventDefault();
         }
-        checkStepsBtns[currentFocused].focus();
       });
     });
   }
